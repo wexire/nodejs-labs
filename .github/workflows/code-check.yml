@@ -1,11 +1,9 @@
 name: Code Check
-run-name: ${{ github.actor }} is testing out code 🚀
 'on': push
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🚀 Running Code Checker ..."
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -13,7 +11,5 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
       - run: npm ci
-      - run: echo "🔎 Checking code with ESLint..."
       - run: npm run lint
-      - run: echo "🔎 Checking code with Prettier..."
       - run: npm run format
