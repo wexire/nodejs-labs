@@ -1,0 +1,39 @@
+{
+  "name": "nodejs-labs",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint . --ignore-path .gitignore",
+    "format:fix": "prettier --write . --ignore-path .gitignore",
+    "format": "prettier --check . --ignore-path .gitignore",
+    "prepare": "husky install",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wexire/nodejs-labs.git"
+  },
+  "author": "Petro Polishchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wexire/nodejs-labs/issues"
+  },
+  "homepage": "https://github.com/wexire/nodejs-labs#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-sonarjs": "^0.16.0",
+    "prettier": "^2.7.1"
+  }
+}
