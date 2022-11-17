@@ -1,4 +1,6 @@
-import { contentJson } from '../consts'
+import { v4 } from 'uuid'
+import { contentJson } from '../consts/index.js'
+import { reqBody } from '../utils/index.js'
 
 const users = [
   {
@@ -14,7 +16,7 @@ const users = [
 export const getUsers = (req, res) => {
   try {
     res.writeHead(200, { 'Content-Type': contentJson })
-    res.json(users)
+    res.end(JSON.stringify(users))
   } catch (error) {
     console.log(error)
   }
@@ -22,26 +24,38 @@ export const getUsers = (req, res) => {
 
 export const getUser = (req, res, id) => {
   try {
-    const user = users.find((u) => u.id === id)
+    const user = users.find((u) => u.id === Number(id))
 
     if (!user) {
       res.writeHead(404, { 'Content-Type': contentJson })
-      res.json({ message: 'Product Not Found' })
+      res.end(JSON.stringify({ message: 'User Not Found' }))
     } else {
       res.writeHead(200, { 'Content-Type': contentJson })
-      res.json(user)
+      res.end(JSON.stringify(user))
     }
   } catch (error) {
     console.log(error)
   }
 }
 
-export const createUser = (req, res) => {
+export const createUser = async (req, res) => {
   try {
-    console.log(req.body)
+    const body = await reqBody(req)
+
+    const { name } = JSON.parse(body)
+
+    if (!name) {
+      res.writeHead(400, { 'Content-Type': contentJson })
+      res.end(JSON.stringify({ message: 'Bad Requst: "name" not specified' }))
+    }
+
+    const user = {
+      name,
+      id: v4()
+    }
 
     res.writeHead(201, { 'Content-Type': contentJson })
-    res.end('Created')
+    res.end(JSON.stringify(user))
   } catch (error) {
     console.log(error)
   }
