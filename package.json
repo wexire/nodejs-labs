@@ -34,6 +34,7 @@
     "dotenv": "^16.0.3",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-sonarjs": "^0.16.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "uuid": "^9.0.0"
   }
 }
