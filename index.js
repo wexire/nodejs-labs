@@ -18,6 +18,14 @@ const server = http.createServer((req, res) => {
     getUser(req, res, id)
   } else if (req.url === '/api/users' && req.method === 'POST') {
     createUser(req, res)
+  } else if (req.method === 'OPTIONS') {
+    res.writeHead(200, { 'Content-Type': contentJson })
+    res.end(
+      JSON.stringify({
+        url: req.url,
+        date: new Date()
+      })
+    )
   } else {
     res.writeHead(404, { 'Content-Type': contentJson })
     res.end(
